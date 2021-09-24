@@ -1,7 +1,8 @@
 # Digital-Electronic-2
 
-#H1
-##H2
+# H1
+
+## H2
 
 *my emphasis*
 
@@ -9,6 +10,7 @@
 2. ...ordered list.
 
 ..* Unordered sub-list
+1. Unordered sub-list
 
 [This is an inline link I just copied](https://www.google.com)
 
