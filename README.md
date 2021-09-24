@@ -23,6 +23,7 @@ Content in the first column | Content in the second column
 ### Code
 
 ```
+
 /***********************************************************************
  * 
  * Blink a LED and use function from the delay library.
@@ -88,4 +89,5 @@ int main(void)
     // Will never reach this
     return 0;
 }
+
 ```
