@@ -22,7 +22,7 @@ Content in the first column | Content in the second column
 
 ### Code
 
-```
+```C
 
 /***********************************************************************
  * 
@@ -90,4 +90,4 @@ int main(void)
     return 0;
 }
 
-```
+```C
