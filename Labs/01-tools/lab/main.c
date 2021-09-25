@@ -21,11 +21,11 @@
  */
 #define LED_GREEN   PB5 // AVR pin where green LED is connected
 // Delay in milliseconds
-#define DOT_DELAY 250
-#define DASH_DELAY 500
-#define PAUSE_DELAY 250
-#define LETTER_DELAY 1000
-#define WORD_DELAY 2000
+#define DOT_DELAY 250		// . blink time
+#define DASH_DELAY 500		// - blink time
+#define PAUSE_DELAY 250		// time between 2 symbols 
+#define LETTER_DELAY 1000	// time between 2 letters
+#define WORD_DELAY 2000		// time between 2 words (at the end) 
 
 
 #ifndef F_CPU           // Preprocessor directive allows for conditional
@@ -67,9 +67,6 @@ int main(void)
     while (1)
     {
 		
-        // Pause several milliseconds
-        //_delay_ms(DASH_DELAY);
-		
 		for (i = 0; i < 12; ++i)
 		{
 			switch (info[i])
@@ -99,25 +96,65 @@ int main(void)
 				default:
 				;
 			}
-			 //PORTB = PORTB ^ (1<<LED_GREEN);
-			 //_delay_ms(PAUSE_DELAY);
+			
 			 PORTB = PORTB ^ (1<<LED_GREEN);
 		} 
 		
 		
-        // Invert LED in Data Register
-        // PORTB = PORTB xor 0010 0000
-        //PORTB = PORTB ^ (1<<LED_GREEN);
+        //// Longer method :
+		//
+		//_delay_ms(DASH_DELAY);
+		//
+		//PORTB = PORTB ^ (1<<LED_GREEN);
 		//_delay_ms(PAUSE_DELAY);
+		//
 		//PORTB = PORTB ^ (1<<LED_GREEN);
 		//_delay_ms(DOT_DELAY);
+		//
 		//PORTB = PORTB ^ (1<<LED_GREEN);
 		//_delay_ms(PAUSE_DELAY);
+		//
 		//PORTB = PORTB ^ (1<<LED_GREEN);
 		//_delay_ms(DOT_DELAY);
+		//
+		//PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(LETTER_DELAY);
+		//
+		//PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(DOT_DELAY);
+		//
+		//PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(LETTER_DELAY);
+		//
+		//PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(DOT_DELAY);
+		//
 		//PORTB = PORTB ^ (1<<LED_GREEN);
 		//_delay_ms(PAUSE_DELAY);
+		//
 		//PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(DOT_DELAY);
+		//
+		//PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(PAUSE_DELAY);
+		//
+		//PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(DASH_DELAY);
+		//
+		//PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(PAUSE_DELAY);
+		//
+		//PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(DASH_DELAY);
+		//
+		//PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(PAUSE_DELAY);
+		//
+		//PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(DASH_DELAY);
+		//
+		//PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(WORD_DELAY);
 		
     }
 

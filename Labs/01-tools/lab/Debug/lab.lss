@@ -122,10 +122,10 @@ int main(void)
 				_delay_ms(DASH_DELAY);
 				 PORTB = PORTB ^ (1<<LED_GREEN);
   ac:	20 e2       	ldi	r18, 0x20	; 32
+
+    // Infinite loop
+    while (1)
     {
-		
-        // Pause several milliseconds
-        //_delay_ms(DASH_DELAY);
 		
 		for (i = 0; i < 12; ++i)
   ae:	10 92 19 01 	sts	0x0119, r1	; 0x800119 <__data_end+0x1>
@@ -253,19 +253,19 @@ int main(void)
  16e:	e1 f7       	brne	.-8      	; 0x168 <main+0xc2>
  170:	00 c0       	rjmp	.+0      	; 0x172 <main+0xcc>
  172:	00 00       	nop
+				
 				default:
 				;
 			}
-			 //PORTB = PORTB ^ (1<<LED_GREEN);
-			 //_delay_ms(PAUSE_DELAY);
+			
 			 PORTB = PORTB ^ (1<<LED_GREEN);
  174:	85 b1       	in	r24, 0x05	; 5
  176:	82 27       	eor	r24, r18
  178:	85 b9       	out	0x05, r24	; 5
+
+    // Infinite loop
+    while (1)
     {
-		
-        // Pause several milliseconds
-        //_delay_ms(DASH_DELAY);
 		
 		for (i = 0; i < 12; ++i)
  17a:	80 91 18 01 	lds	r24, 0x0118	; 0x800118 <__data_end>
