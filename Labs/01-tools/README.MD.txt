@@ -2,7 +2,7 @@
 
 # Experiments on your own
 
-```c
+```C
 
 /***********************************************************************
  * 
@@ -167,4 +167,6 @@ int main(void)
     // Will never reach this
     return 0;
 }
+
+```C
 
