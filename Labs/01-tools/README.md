@@ -1,12 +1,12 @@
 # Part 4
 
 
-![alt text][Images/PIC1]
+![alt text][Images/PIC1.PNG]
 
 
 # Experiments on your own
 
-```C
+````C
 
 /***********************************************************************
  * 
@@ -172,5 +172,5 @@ int main(void)
     return 0;
 }
 
-
+````
 
