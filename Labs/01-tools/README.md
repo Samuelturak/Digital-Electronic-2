@@ -1,5 +1,9 @@
 # Part 4
 
+
+![alt text][Images/PIC1]
+
+
 # Experiments on your own
 
 ```C
