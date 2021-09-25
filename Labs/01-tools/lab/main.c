@@ -20,9 +20,14 @@
  * directives. This is a common mistake.
  */
 #define LED_GREEN   PB5 // AVR pin where green LED is connected
-//#define SHORT_DELAY 10 // Delay in milliseconds
-#define DOT_DELAY 100
-//#define DASH_DELAY 100
+// Delay in milliseconds
+#define DOT_DELAY 250
+#define DASH_DELAY 500
+#define PAUSE_DELAY 250
+#define LETTER_DELAY 1000
+#define WORD_DELAY 2000
+
+
 #ifndef F_CPU           // Preprocessor directive allows for conditional
                         // compilation. The #ifndef means "if not defined".
 # define F_CPU 16000000 // CPU frequency in Hz required for delay
@@ -41,8 +46,14 @@
  * Purpose:  Toggle one LED and use delay library.
  * Returns:  none
  **********************************************************************/
+
+
+int info[] = {DASH_DELAY,DOT_DELAY,DOT_DELAY,LETTER_DELAY,DOT_DELAY,LETTER_DELAY,DOT_DELAY,DOT_DELAY,DASH_DELAY,DASH_DELAY,DASH_DELAY,WORD_DELAY};
+int i;
+
 int main(void)
 {
+	
     // Set pin as output in Data Direction Register
     // DDRB = DDRB or 0010 0000
     DDRB = DDRB | (1<<LED_GREEN);
@@ -55,15 +66,59 @@ int main(void)
     // Infinite loop
     while (1)
     {
+		
         // Pause several milliseconds
         //_delay_ms(DASH_DELAY);
-        _delay_ms(DOT_DELAY);
-        //_delay_ms(DOT_DELAY);
-        
-
+		
+		for (i = 0; i < 12; ++i)
+		{
+			switch (info[i])
+			{
+				case DASH_DELAY:
+				_delay_ms(DASH_DELAY);
+				 PORTB = PORTB ^ (1<<LED_GREEN);
+				 _delay_ms(PAUSE_DELAY);
+				break;
+				
+				case DOT_DELAY:
+				_delay_ms(DOT_DELAY);
+				 PORTB = PORTB ^ (1<<LED_GREEN);
+				 _delay_ms(PAUSE_DELAY);
+				break;
+				
+				case LETTER_DELAY:
+				 PORTB = PORTB ^ (1<<LED_GREEN);
+				_delay_ms(LETTER_DELAY);
+				break;
+				
+				case WORD_DELAY:
+				 PORTB = PORTB ^ (1<<LED_GREEN);
+				_delay_ms(WORD_DELAY);
+				break;
+				
+				default:
+				;
+			}
+			 //PORTB = PORTB ^ (1<<LED_GREEN);
+			 //_delay_ms(PAUSE_DELAY);
+			 PORTB = PORTB ^ (1<<LED_GREEN);
+		} 
+		
+		
         // Invert LED in Data Register
         // PORTB = PORTB xor 0010 0000
-        PORTB = PORTB ^ (1<<LED_GREEN);
+        //PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(PAUSE_DELAY);
+		//PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(DOT_DELAY);
+		//PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(PAUSE_DELAY);
+		//PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(DOT_DELAY);
+		//PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(PAUSE_DELAY);
+		//PORTB = PORTB ^ (1<<LED_GREEN);
+		
     }
 
     // Will never reach this
