@@ -1,7 +1,7 @@
 # Part 4
 
 
-![alt text](Images/PIC1.png)
+![alt text](Images/PIC1.PNG)
 
 
 # Experiments on your own
