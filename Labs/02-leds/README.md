@@ -3,10 +3,10 @@
 ![alt text](Images/Pic3.gif)
 
 
-![alt text](Images/Pic2.gif)
-
-
 ![alt text](Images/Pic1.gif)
+
+
+![alt text](Images/Pic2.gif)
 
 
 ### Table
