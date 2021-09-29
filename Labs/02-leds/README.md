@@ -1,10 +1,10 @@
 
 
-![alt text](Images/Pic3.PNG)
+![alt text](Images/Pic3.png)
 
-![alt text](Images/Pic2.PNG)
+![alt text](Images/Pic2.png)
 
-![alt text](Images/Pic1.PNG)
+![alt text](Images/Pic1.png)
 
 ### Table
 LED color | Supply voltage | LED current | LED current | Resistor value
