@@ -57,16 +57,12 @@ int main(void)
     while (1)
     {
         // Pause several milliseconds
+     
         
-        
-        //_delay_ms(BLINK_DELAY);
         //PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(BLINK_DELAY);
         //PORTC = PORTC ^ (1<<LED_WHITE);
         
-        
-        
-        
-
         // WRITE YOUR CODE HERE
         
         //if (bit_is_set(PIND, BUTTON))
