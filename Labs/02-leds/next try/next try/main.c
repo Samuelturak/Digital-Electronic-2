@@ -12,9 +12,7 @@
 /* Defines -----------------------------------------------------------*/
 #define LED_GREEN   PB5     // AVR pin where green LED is connected
 #define LED_WHITE   PC5
-#define BUTTON		PD5
 #define BLINK_DELAY 500
-
 #ifndef F_CPU
 # define F_CPU 16000000     // CPU frequency in Hz required for delay
 #endif
@@ -22,7 +20,6 @@
 /* Includes ----------------------------------------------------------*/
 #include <util/delay.h>     // Functions for busy-wait delay loops
 #include <avr/io.h>         // AVR device-specific IO definitions
-#include <avr/sfr_defs.h>
 //#include <avr/>
 
 /* Functions ---------------------------------------------------------*/
@@ -49,28 +46,30 @@ int main(void)
     PORTC = PORTC & ~(1<<LED_WHITE);
     
 
-    // Configure Push button at port D and enable internal pull-up resistor
-	
-    DDRD = DDRD & ~(1<<BUTTON);
-	
-	//PIND = PIND | (1<<BUTTON);
+   
 
+    // Configure Push button at port D and enable internal pull-up resistor
+    //DDRD
+    //PORTD
     
-	PORTC = PORTC | (1<<LED_WHITE);
+
     // Infinite loop
     while (1)
     {
         // Pause several milliseconds
-
+     
+        
+        //PORTB = PORTB ^ (1<<LED_GREEN);
+		//_delay_ms(BLINK_DELAY);
+        //PORTC = PORTC ^ (1<<LED_WHITE);
+        
         // WRITE YOUR CODE HERE
         
-        if (bit_is_clear(PIND, 5))
-        {
-            PORTB = PORTB ^ (1<<LED_GREEN);
-           
-            PORTC = PORTC ^ (1<<LED_WHITE);
-			_delay_ms(BLINK_DELAY);
-        }
+        //if (bit_is_set(PIND, BUTTON))
+        //{
+            
+        //}
+        
         
     }
 

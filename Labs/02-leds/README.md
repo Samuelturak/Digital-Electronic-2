@@ -54,19 +54,19 @@ https://github.com/Samuelturak/Digital-Electronic-2
 | **DDRB** | **Description** |
 | :-: | :-- |
 | 0 | Input pin |
-| 1 | |
+| 1 | Output pin |
 
 | **PORTB** | **Description** |
 | :-: | :-- |
 | 0 | Output low value |
-| 1 | |
+| 1 | Pull-up |
 
 | **DDRB** | **PORTB** | **Direction** | **Internal pull-up resistor** | **Description** |
 | :-: | :-: | :-: | :-: | :-- |
 | 0 | 0 | input | no | Tri-state, high-impedance |
-| 0 | 1 | | | |
-| 1 | 0 | | | |
-| 1 | 1 | | | |
+| 0 | 1 | input | yes | PORTB will source current |
+| 1 | 0 | output | no | Output Low (Sink) |
+| 1 | 1 | output | no | Output High (Source) |
 
 2. Part of the C code listing with syntax highlighting, which blinks alternately with a pair of LEDs; let one LED is connected to port B and the other to port C:
 
@@ -112,16 +112,27 @@ int main(void)
 1. Part of the C code listing with syntax highlighting, which toggles LEDs only if push button is pressed. Otherwise, the value of the LEDs does not change. Let the push button is connected to port D:
 
 ```c
-    // Configure Push button at port D and enable internal pull-up resistor
-    // WRITE YOUR CODE HERE
+// Configure Push button at port D and enable internal pull-up resistor
+	
+    DDRD = DDRD & ~(1<<BUTTON);
+
+    
+    PORTC = PORTC | (1<<LED_WHITE);
 
     // Infinite loop
     while (1)
     {
         // Pause several milliseconds
-        _delay_ms(BLINK_DELAY);
-
+     
         // WRITE YOUR CODE HERE
+        
+        if (bit_is_clear(PIND, 5))
+        {
+            PORTB = PORTB ^ (1<<LED_GREEN);
+            PORTC = PORTC ^ (1<<LED_WHITE);
+	    _delay_ms(BLINK_DELAY);
+        }
+        
     }
 ```
 

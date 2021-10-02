@@ -1,3 +1,4 @@
+  
 /***********************************************************************
  * 
  * Alternately toggle two LEDs when a push button is pressed.
@@ -12,8 +13,8 @@
 /* Defines -----------------------------------------------------------*/
 #define LED_GREEN   PB5     // AVR pin where green LED is connected
 #define LED_WHITE   PC5
-#define BUTTON		PD5
 #define BLINK_DELAY 500
+#define BUTTON 
 
 #ifndef F_CPU
 # define F_CPU 16000000     // CPU frequency in Hz required for delay
@@ -22,8 +23,7 @@
 /* Includes ----------------------------------------------------------*/
 #include <util/delay.h>     // Functions for busy-wait delay loops
 #include <avr/io.h>         // AVR device-specific IO definitions
-#include <avr/sfr_defs.h>
-//#include <avr/>
+
 
 /* Functions ---------------------------------------------------------*/
 /**********************************************************************
@@ -33,47 +33,44 @@
  **********************************************************************/
 int main(void)
 {
-    // Green LED at port B
-    // Set pin as output in Data Direction Register...
-    DDRB = DDRB | (1<<LED_GREEN);
-    
-    // ...and turn LED off in Data Register
-    PORTB = PORTB & ~(1<<LED_GREEN);
-    
-
-    // Configure the second LED at port C
-    DDRC = DDRC | (1<<LED_WHITE);
-    
-    // ...and turn LED off in Data Register
-    
-    PORTC = PORTC & ~(1<<LED_WHITE);
-    
-
-    // Configure Push button at port D and enable internal pull-up resistor
+	// Green LED at port B
+	// Set pin as output in Data Direction Register...
+	DDRB = DDRB | (1<<LED_GREEN);
 	
-    DDRD = DDRD & ~(1<<BUTTON);
+	// ...and turn LED off in Data Register
+	PORTB = PORTB & ~(1<<LED_GREEN);
 	
-	//PIND = PIND | (1<<BUTTON);
 
-    
-	PORTC = PORTC | (1<<LED_WHITE);
-    // Infinite loop
-    while (1)
-    {
-        // Pause several milliseconds
+	// Configure the second LED at port C
+	DDRC = DDRC | (1<<LED_WHITE);
+	
+	// ...and turn LED off in Data Register
+	
+	PORTC = PORTC & ~(1<<LED_WHITE);
+	
+	PORTD = PORTD & ~()
+	
+	//BUTTON = BUTTON ()
 
-        // WRITE YOUR CODE HERE
-        
-        if (bit_is_clear(PIND, 5))
-        {
-            PORTB = PORTB ^ (1<<LED_GREEN);
-           
-            PORTC = PORTC ^ (1<<LED_WHITE);
+	// Infinite loop
+	while (1)
+	{
+		// Pause several milliseconds
+		
+		
+		
+		//if ()
+		//{
+			PORTB = PORTB ^ (1<<LED_GREEN);
 			_delay_ms(BLINK_DELAY);
-        }
-        
-    }
+			PORTC = PORTC ^ (1<<LED_WHITE);
+		//}
+		
+		// WRITE YOUR CODE HERE
+	}
 
-    // Will never reach this
-    return 0;
+	// Will never reach this
+	return 0;
 }
+
+
