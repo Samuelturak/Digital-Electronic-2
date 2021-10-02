@@ -112,10 +112,9 @@ int main(void)
 	
     DDRD = DDRD & ~(1<<BUTTON);
 	
-	PORTD = PORTD |	(1<<BUTTON); 
+    PORTD = PORTD | (1<<BUTTON); 
 
-    
-	PORTC = PORTC | (1<<LED_WHITE); // Turning one LED on
+    PORTC = PORTC | (1<<LED_WHITE); // Turning one LED on
 	
     // Infinite loop
     while (1)
