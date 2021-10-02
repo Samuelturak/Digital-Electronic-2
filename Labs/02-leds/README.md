@@ -26,14 +26,6 @@ blue | 5V | 20 mA | 4V | 50 Ω |
 
 ![alt text](Images/Pic5.jpg)
 
-# Part 2
-
-DDRB | Description
------------- | -------------
-0 | Input pin
-1 | Content in the second column
-
-
 
 # Lab 2: Samuel Turák
 
