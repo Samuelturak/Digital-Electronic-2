@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>next try</AssemblyName>
-    <Name>next try</Name>
-    <RootNamespace>next try</RootNamespace>
+    <AssemblyName>knight_rider_code</AssemblyName>
+    <Name>knight_rider_code</Name>
+    <RootNamespace>knight_rider_code</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>

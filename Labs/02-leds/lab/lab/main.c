@@ -53,10 +53,11 @@ int main(void)
 	
     DDRD = DDRD & ~(1<<BUTTON);
 	
-	//PIND = PIND | (1<<BUTTON);
+	PORTD = PORTD |	(1<<BUTTON); 
 
     
-	PORTC = PORTC | (1<<LED_WHITE);
+	PORTC = PORTC | (1<<LED_WHITE); // Turning one LED on
+	
     // Infinite loop
     while (1)
     {
@@ -67,7 +68,6 @@ int main(void)
         if (bit_is_clear(PIND, 5))
         {
             PORTB = PORTB ^ (1<<LED_GREEN);
-           
             PORTC = PORTC ^ (1<<LED_WHITE);
 			_delay_ms(BLINK_DELAY);
         }
