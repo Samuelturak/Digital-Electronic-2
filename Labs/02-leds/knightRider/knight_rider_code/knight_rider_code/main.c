@@ -6,7 +6,7 @@
      
 
 #define BUTTON		PD5
-#define BLINK_DELAY 500
+#define BLINK_DELAY 100
 
 #ifndef F_CPU
 # define F_CPU 16000000     // CPU frequency in Hz required for delay
@@ -31,7 +31,7 @@ int main(void)
 	DDRD = DDRD & ~(1<<BUTTON);
 	
 	// ...and turn LED off in Data Register
-	//PORTB = PORTB | 62;
+	PORTB = PORTB & ~(1<<LED_1);
 	//_delay_ms(BLINK_DELAY);
 	PORTB = PORTB & ~(1<<LED_2);
 	PORTB = PORTB & ~(1<<LED_3);
@@ -41,8 +41,10 @@ int main(void)
 	
 	PORTD = PORTD |	(1<<BUTTON);
 	
-	int i;
 	
+	int i;
+	int go;
+	go = 0;
 	
 	// Infinite loop
 	while (1)
@@ -50,26 +52,36 @@ int main(void)
 		// Pause several milliseconds
 
 		// WRITE YOUR CODE HERE
-		
-		
-		
-		for (i = 1; i < 6; ++i)
-		{	
-			PORTB  = PORTB | 193 | 2^i;
+		if(!go && bit_is_set(PIND, 5))
+		{
+			go = 1;
+			PORTB = PORTB | (1<<LED_1);
 			_delay_ms(BLINK_DELAY);
 		}
 		
-		for (i = 1; i < 6; ++i)
+		if (go)
 		{
-			//PORTB  = (1 >> PORTB);
-			//_delay_ms(BLINK_DELAY);
-		}
-		
-		
-			//PORTB = PORTB ^ (1<<LED_GREEN);
+			for (i = 1; i < 5; ++i)
+			{
+				PORTB  = (PORTB << 1) ;
+				_delay_ms(BLINK_DELAY);
+			}
 			
-			//PORTC = PORTC ^ (1<<LED_WHITE);
-			//_delay_ms(BLINK_DELAY);
+			for (i = 1; i < 5; ++i)
+			{
+				PORTB  = (PORTB >> 1);
+				_delay_ms(BLINK_DELAY);
+			}
+		}
+				
+		if(go && bit_is_set(PIND, 5))
+		{
+			go = 0;
+			PORTB = PORTB & ~(1<<LED_1);
+							_delay_ms(BLINK_DELAY);
+											_delay_ms(BLINK_DELAY);
+															_delay_ms(BLINK_DELAY);
+		}
 		
 		
 	}
