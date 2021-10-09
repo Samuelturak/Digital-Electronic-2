@@ -33,8 +33,8 @@ void GPIO_config_output(volatile uint8_t *reg_name, uint8_t pin_num)
 void GPIO_config_input_pullup(volatile uint8_t *reg_name, uint8_t pin_num)
 {
     *reg_name = *reg_name & ~(1<<pin_num);  // Data Direction Register
-    reg_name++;                     // Change pointer to Data Register
-    *reg_name = *reg_name & ~(1<<pin_num);   // Data Register
+    reg_name++;								// Change pointer to Data Register
+    *reg_name = *reg_name & ~(1<<pin_num);  // Data Register
 }
 
 /**********************************************************************
@@ -47,7 +47,7 @@ void GPIO_config_input_pullup(volatile uint8_t *reg_name, uint8_t pin_num)
 void GPIO_config_input_no_pullup(volatile uint8_t *reg_name, uint8_t pin_num)
 {
     *reg_name = *reg_name & ~(1<<pin_num);  // Data Direction Register
-    reg_name++;                     // Change pointer to Data Register
+    reg_name++;								// Change pointer to Data Register
     *reg_name = *reg_name | (1<<pin_num);   // Data Register
 }
 
@@ -85,16 +85,24 @@ void GPIO_toggle(volatile uint8_t *reg_name, uint8_t pin_num)
 
 uint8_t GPIO_read(volatile uint8_t *reg_name, uint8_t pin_num)
 {
-    if ((*reg_name & ( 1 << *reg_name)) == 0)
+    if ((*reg_name & (1<<pin_num)) == 0)
     {
-        return(0);
+        return(1);
     }
         else
     {
-        return(1);
+        return(0);
     }
     // next method, but include library
     //return (bit_is_set(*reg_name, pin_num));
     
-    
 }    
+
+uint8_t GPIO_set0(volatile uint8_t *reg_name, uint8_t pin_num)
+{
+		return(0);
+}
+uint8_t GPIO_set1(volatile uint8_t *reg_name, uint8_t pin_num)
+{
+		return(1);
+}

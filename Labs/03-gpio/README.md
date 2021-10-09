@@ -54,22 +54,35 @@ int calculate(uint8_t x, uint8_t y)
 ### GPIO library
 
 1. In your words, describe the difference between the declaration and the definition of the function in C.
-   * Function declaration
-   * Function definition
+   * Function declaration: The function declaration specifies the name of the function, it's parameters and the type that is being returned from the function. It let's the compilar know, that there is a function to work with.
+   * Function definition: The function definition defines what the function is supposed to do (the code of the function is there). It takes the input arguments from the function declaration, uses them in the code and specifies what is being returned. It is being used when the function gets called.
 
 2. Part of the C code listing with syntax highlighting, which toggles LEDs only if push button is pressed. Otherwise, the value of the LEDs does not change. Use function from your GPIO library. Let the push button is connected to port D:
 
 ```c
-    // Configure Push button at port D and enable internal pull-up resistor
-    // WRITE YOUR CODE HERE
-
+     // Configure Push button at port D and enable internal pull-up resistor
+	
+	GPIO_config_input_pullup(&DDRD, BUTTON);
+	
     // Infinite loop
     while (1)
     {
         // Pause several milliseconds
-        _delay_ms(BLINK_DELAY);
+        
 
         // WRITE YOUR CODE HERE
+
+		if (GPIO_read(&PIND, 5))
+		{		
+			 GPIO_toggle(&PORTB, LED_GREEN);
+			 GPIO_toggle(&PORTC, LED_WHITE);
+			 _delay_ms(BLINK_DELAY);
+		}
+       
+    }
+
+    // Will never reach this
+    return 0;
     }
 ```
 
