@@ -62,28 +62,28 @@ int calculate(uint8_t x, uint8_t y)
 ```c
      // Configure Push button at port D and enable internal pull-up resistor
 	
-    GPIO_config_input_pullup(&DDRD, BUTTON);
+	GPIO_config_input_pullup(&DDRD, BUTTON);
 	
     // Infinite loop
     while (1)
     {
+		 _delay_ms(BLINK_DELAY);
         // Pause several milliseconds
         
 
         // WRITE YOUR CODE HERE
 
-		if (GPIO_read(&PIND, 5))
+		if (GPIO_read(&PIND, BUTTON)) 
 		{		
 			 GPIO_toggle(&PORTB, LED_GREEN);
 			 GPIO_toggle(&PORTC, LED_WHITE);
-			 _delay_ms(BLINK_DELAY);
+			
 		}
        
     }
 
     // Will never reach this
     return 0;
-    }
 ```
 
 
