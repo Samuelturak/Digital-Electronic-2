@@ -49,16 +49,17 @@ int main(void)
     // Infinite loop
     while (1)
     {
+		 _delay_ms(BLINK_DELAY);
         // Pause several milliseconds
         
 
         // WRITE YOUR CODE HERE
 
-		if (GPIO_read(&PIND, 5))
+		if (GPIO_read(&PIND, BUTTON)) 
 		{		
 			 GPIO_toggle(&PORTB, LED_GREEN);
 			 GPIO_toggle(&PORTC, LED_WHITE);
-			 _delay_ms(BLINK_DELAY);
+			
 		}
        
     }
