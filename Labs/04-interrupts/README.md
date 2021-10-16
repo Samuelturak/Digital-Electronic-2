@@ -50,6 +50,7 @@ Link to your `Digital-electronics-2` GitHub repository:
 #define TIM0_overflow_interrupt_enable()  TIMSK0 |= (1<<TOIE0);
 /** @brief Disable overflow interrupt, 0 --> disable */
 #define TIM0_overflow_interrupt_disable() TIMSK0 &= ~(1<<TOIE0);
+
 ```
 
 3. Flowchart figure for function `main()` and interrupt service routine `ISR(TIMER1_OVF_vect)` of application that ensures the flashing of one LED in the timer interruption. When the button is pressed, the blinking is faster, when the button is released, it is slower. Use only a timer overflow and not a delay library. The image can be drawn on a computer or by hand. Use clear descriptions of the individual steps of the algorithms.
