@@ -24,8 +24,8 @@ Link to your `Digital-electronics-2` GitHub repository:
 ### Timer library
 
 1. In your words, describe the difference between common C function and interrupt service routine.
-   * Function
-   * Interrupt service routine
+   * Function is being called up by the code. It is stated when its being called up.
+   * Interrupt service routine occurs during an interrupt of the microprocessor, not by an instruction. An interrupt occurs by an internal or an external signal.
 
 2. Part of the header file listing with syntax highlighting, which defines settings for Timer/Counter0:
 
@@ -37,7 +37,7 @@ Link to your `Digital-electronics-2` GitHub repository:
 /** @brief Stop timer, prescaler 000 --> STOP */
 #define TIM0_stop()           TCCR0B &= ~((1<<CS02) | (1<<CS01) | (1<<CS00));
 /** @brief Set overflow 4ms, prescaler 001 --> 1 */
-#define TIM0_overflow_4ms()   TCCR0B &= ~((1<<CS02) | (1<<CS11)); TCCR0B |= (1<<CS10);
+#define TIM0_overflow_4ms()   TCCR0B &= ~((1<<CS02) | (1<<CS01)); TCCR0B |= (1<<CS00);
 /** @brief Set overflow 33ms, prescaler 010 --> 8 */
 #define TIM0_overflow_33ms()  TCCR0B &= ~((1<<CS02) | (1<<CS00)); TCCR0B |= (1<<CS01);
 /** @brief Set overflow 262ms, prescaler 011 --> 64 */
