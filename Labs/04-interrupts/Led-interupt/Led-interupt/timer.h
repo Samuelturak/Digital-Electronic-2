@@ -62,7 +62,7 @@
 /** @brief Stop timer, prescaler 000 --> STOP */
 #define TIM0_stop()           TCCR0B &= ~((1<<CS02) | (1<<CS01) | (1<<CS00));
 /** @brief Set overflow 4ms, prescaler 001 --> 1 */
-#define TIM0_overflow_4ms()   TCCR0B &= ~((1<<CS02) | (1<<CS11)); TCCR0B |= (1<<CS10);
+#define TIM0_overflow_4ms()   TCCR0B &= ~((1<<CS02) | (1<<CS01)); TCCR0B |= (1<<CS00);
 /** @brief Set overflow 33ms, prescaler 010 --> 8 */
 #define TIM0_overflow_33ms()  TCCR0B &= ~((1<<CS02) | (1<<CS00)); TCCR0B |= (1<<CS01);
 /** @brief Set overflow 262ms, prescaler 011 --> 64 */
