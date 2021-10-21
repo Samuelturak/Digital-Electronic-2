@@ -1,26 +1,60 @@
+# Lab 4: Samuel Turák
 
-| **Module** | **Operation** | **I/O register(s)** | **Bit(s)** |
-| :-: | :-: | :-: | :-- | 
-| Timer/Counter0  | 8 | 0, 1, ..., 255 | Unsigned 8-bit integer |
-| `int8_t`   | 8 | -128 to 127 | 8-bit integer |
-| `uint16_t` | 16 | 0 to 65,535 | Unsigned 16-bit integer |
-| `int16_t`  | 16 | -32768 to 32767 | 16-bit integer |
-| `float`    | 32 | -3.4e+38, ..., 3.4e+38 | Single-precision floating-point |
-| `void`     | 0 | 0 | Won't return any value |
+Link to your `Digital-electronics-2` GitHub repository:
 
-| **Program address** | **Source** | **Vector name** | **Description** |
-| :-: | :-- | :-- | :-- |
-| 0x0000 | RESET | -- | Reset of the system |
-| 0x0002 | INT0  | `INT0_vect`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | External interrupt request number 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-|  | INT1 |  |  |
-|  | PCINT0 |  |  |
-|  | PCINT1 |  |  |
-|  | PCINT2 |  |  |
-|  | WDT |  |  |
-|  | TIMER2_OVF |  |  |
-| 0x0018 | TIMER1_COMPB | `TIMER1_COMPB_vect` | Compare match between Timer/Counter1 value and channel B compare value |
-| 0x001A | TIMER1_OVF | `TIMER1_OVF_vect` | Overflow of Timer/Counter1 value |
-|  | TIMER0_OVF |  |  |
-|  | USART_RX |  |  |
-|  | ADC |  |  |
-|  | TWI |  |  |	
+   https://github.com/Samuelturak/Digital-Electronic-2
+
+
+### Overflow times
+
+1. Complete table with overflow times.
+
+| **Module** | **Number of bits** | **1** | **8** | **32** | **64** | **128** | **256** | **1024** |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| Timer/Counter0 | 8  | 16u | 128u | -- | 1024u | -- | 4096u | 16384u |
+| Timer/Counter1 | 16 | 4096u | 32768u | -- | 262144u | -- | 1048576u | 4194304u |
+| Timer/Counter2 | 8  |  16u   | 128u | 512u | 1024u | 2048u | 4096u | 16384u |
+
+
+### Timer library
+
+1. In your words, describe the difference between common C function and interrupt service routine.
+   * Function is being called up by the code. It is stated when its being called up.
+   * Interrupt service routine occurs during an interrupt of the microprocessor, not by an instruction. An interrupt occurs by an internal or an external signal.
+
+2. Part of the header file listing with syntax highlighting, which defines settings for Timer/Counter0:
+
+```c
+/**
+ * @name  Definitions of Timer/Counter0
+ * @note  F_CPU = 16 MHz
+ */
+/** @brief Stop timer, prescaler 000 --> STOP */
+#define TIM0_stop()           TCCR0B &= ~((1<<CS02) | (1<<CS01) | (1<<CS00));
+/** @brief Set overflow 4ms, prescaler 001 --> 1 */
+#define TIM0_overflow_4ms()   TCCR0B &= ~((1<<CS02) | (1<<CS01)); TCCR0B |= (1<<CS00);
+/** @brief Set overflow 33ms, prescaler 010 --> 8 */
+#define TIM0_overflow_33ms()  TCCR0B &= ~((1<<CS02) | (1<<CS00)); TCCR0B |= (1<<CS01);
+/** @brief Set overflow 262ms, prescaler 011 --> 64 */
+#define TIM0_overflow_262ms() TCCR0B &= ~(1<<CS02); TCCR0B |= (1<<CS01) | (1<<CS00);
+/** @brief Set overflow 1s, prescaler 100 --> 256 */
+#define TIM0_overflow_1s()    TCCR0B &= ~((1<<CS01) | (1<<CS00)); TCCR0B |= (1<<CS02);
+/** @brief Set overflow 4s, prescaler // 101 --> 1024 */
+#define TIM0_overflow_4s()    TCCR0B &= ~(1<<CS01); TCCR0B |= (1<<CS02) | (1<<CS00);
+/** @brief Enable overflow interrupt, 1 --> enable */
+#define TIM0_overflow_interrupt_enable()  TIMSK0 |= (1<<TOIE0);
+/** @brief Disable overflow interrupt, 0 --> disable */
+#define TIM0_overflow_interrupt_disable() TIMSK0 &= ~(1<<TOIE0);
+
+```
+
+3. Flowchart figure for function `main()` and interrupt service routine `ISR(TIMER1_OVF_vect)` of application that ensures the flashing of one LED in the timer interruption. When the button is pressed, the blinking is faster, when the button is released, it is slower. Use only a timer overflow and not a delay library. The image can be drawn on a computer or by hand. Use clear descriptions of the individual steps of the algorithms.
+
+   ![your figure](Images/Flowchart.png)
+
+
+### Knight Rider
+
+1. Scheme of Knight Rider application with four LEDs and a push button, connected according to Multi-function shield. Connect AVR device, LEDs, resistors, push button, and supply voltage. The image can be drawn on a computer or by hand. Always name all components and their values.
+
+   ![your figure](Images/KnightRider.PNG)

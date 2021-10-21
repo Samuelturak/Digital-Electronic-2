@@ -78,9 +78,9 @@ int main(void)
 		{
 			go = 0;
 			PORTB = PORTB & ~(1<<LED_1);
-							_delay_ms(BLINK_DELAY);
-											_delay_ms(BLINK_DELAY);
-															_delay_ms(BLINK_DELAY);
+			_delay_ms(BLINK_DELAY);
+			_delay_ms(BLINK_DELAY);
+			_delay_ms(BLINK_DELAY);
 		}
 		
 		

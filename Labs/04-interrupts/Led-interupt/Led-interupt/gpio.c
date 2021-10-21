@@ -97,12 +97,3 @@ uint8_t GPIO_read(volatile uint8_t *reg_name, uint8_t pin_num)
     //return (bit_is_set(*reg_name, pin_num));
     
 }    
-
-uint8_t GPIO_set0(volatile uint8_t *reg_name, uint8_t pin_num)
-{
-		return(1);
-}
-uint8_t GPIO_set1(volatile uint8_t *reg_name, uint8_t pin_num)
-{
-		return(0);
-}
