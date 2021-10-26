@@ -154,8 +154,8 @@ void SEG_update_shift_regs(uint8_t segments, uint8_t position)
  **********************************************************************/
 void SEG_clk_2us(uint8_t segments, uint8_t position)
 {
-	GPIO_toggle(&PORTD, SEG_CLK);
+	GPIO_toggle(&PIND, SEG_CLK);
 	_delay_us(1);
-	GPIO_toggle(&PORTD, SEG_CLK);
+	GPIO_toggle(&PIND, SEG_CLK);
 	_delay_us(1);
 }

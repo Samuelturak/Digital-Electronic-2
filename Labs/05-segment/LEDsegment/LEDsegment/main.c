@@ -62,19 +62,19 @@ int main(void)
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-	static num0 = 0;
-	static num1 = 0;
-	SEG_update_shift_regs(num0, 0);
+	static volatile num0 = 0;
+	static volatile num1 = 0;
+	//SEG_update_shift_regs(num0, 0);
 	num0++;
 	if (num0 > 9)
 	{
 		num0 = 0;
 		num1++;
-	}
-	
-	if (num1 > 6);
-	{
-		num1 = 0;
+		
+		if (num1 > 6);
+		{
+			num1 = 0;
+		}
 	}
 }
 
@@ -82,13 +82,15 @@ ISR(TIMER0_OVF_vect)
 {	
 	// WRITE YOUR CODE HERE
 	static pos = 0;
+	volatile num0;
+	volatile num1;
 	if (pos == 0)
 	{
-		SEG_update_shift_regs(num2, pos);
+		SEG_update_shift_regs(num0, pos);
 	}
 	else
 	{
-		SEG_update_shift_regs(num3, pos);
+		SEG_update_shift_regs(num1, pos);
 	}
 	pos ++;
 	if (pos > 1)
