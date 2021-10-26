@@ -14,8 +14,10 @@
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include "timer.h"          // Timer library for AVR-GCC
 #include "segment.h"        // Seven-segment display library for AVR-GCC
-int num2 = 0;
-int num3 = 0;
+//static volatile num0 = 0;
+//static volatile num1 = 0;
+uint8_t num0 = 0;
+uint8_t num1 = 0;
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
@@ -35,8 +37,9 @@ int main(void)
 
     // Configure 16-bit Timer/Counter1 for Decimal counter
     // Set the overflow prescaler to 262 ms and enable interrupt
-	 TIM1_overflow_262ms();
 	 TIM0_overflow_4ms();
+	 TIM1_overflow_262ms();
+	 TIM0_overflow_interrupt_enable();
 	 TIM1_overflow_interrupt_enable();
 
     // Enables interrupts by setting the global interrupt mask
@@ -47,8 +50,7 @@ int main(void)
     {
         /* Empty loop. All subsequent operations are performed exclusively 
          * inside interrupt service routines ISRs */
-		//TIM1_overflow_262ms();
-		//TIM1_overflow_4ms();
+		
     }
 
     // Will never reach this
@@ -62,16 +64,15 @@ int main(void)
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-	static volatile num0 = 0;
-	static volatile num1 = 0;
-	//SEG_update_shift_regs(num0, 0);
-	num0++;
-	if (num0 > 9)
+	if (num0 < 9)
+	{
+		num0++;
+	}
+	else
 	{
 		num0 = 0;
 		num1++;
-		
-		if (num1 > 6);
+		if (num1 > 5)
 		{
 			num1 = 0;
 		}
@@ -81,20 +82,15 @@ ISR(TIMER1_OVF_vect)
 ISR(TIMER0_OVF_vect)
 {	
 	// WRITE YOUR CODE HERE
-	static pos = 0;
-	volatile num0;
-	volatile num1;
+	uint8_t static pos = 0;
 	if (pos == 0)
 	{
 		SEG_update_shift_regs(num0, pos);
+		pos++;
 	}
 	else
 	{
 		SEG_update_shift_regs(num1, pos);
-	}
-	pos ++;
-	if (pos > 1)
-	{
-		pos = 0;
+		pos--;
 	}
 }

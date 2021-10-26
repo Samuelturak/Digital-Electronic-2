@@ -20,8 +20,19 @@ Link to your `Digital-electronics-2` GitHub repository:
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-    // WRITE YOUR CODE HERE
-
+	if (num0 < 9)
+	{
+		num0++;
+	}
+	else
+	{
+		num0 = 0;
+		num1++;
+		if (num1 > 5)
+		{
+			num1 = 0;
+		}
+	}
 }
 ```
 
@@ -31,17 +42,25 @@ ISR(TIMER1_OVF_vect)
  * Purpose:  Display tens and units of a counter at SSD.
  **********************************************************************/
 ISR(TIMER0_OVF_vect)
-{
-    static uint8_t pos = 0;
-
-    // WRITE YOUR CODE HERE
-
+{	
+	// WRITE YOUR CODE HERE
+	uint8_t static pos = 0;
+	if (pos == 0)
+	{
+		SEG_update_shift_regs(num0, pos);
+		pos++;
+	}
+	else
+	{
+		SEG_update_shift_regs(num1, pos);
+		pos--;
+	}
 }
 ```
 
 3. Flowchart figure for function `SEG_clk_2us()` which generates one clock period on `SEG_CLK` pin with a duration of 2&nbsp;us. The image can be drawn on a computer or by hand. Use clear descriptions of the individual steps of the algorithms.
 
-   ![your figure](FLOWCHART.PNG)
+   ![your figure](FLOWCHART.png)
 
 
 ### Kitchen alarm
