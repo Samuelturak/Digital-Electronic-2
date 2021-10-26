@@ -45,16 +45,16 @@ void SEG_init(void)
 
 uint8_t segment_value[] = {
     // abcdefgDP
-    0b00000011,     // Digit 0
-    0b10011111,          // Digit 1
-    0b00100101,          // Digit 2
-    0b00001101,     // Digit 3
-    0b10011001,          // ...
-    0b01001001,
-    0b01000001,
-    0b00011111,
-    0b00000001,
-    0b00011001
+    0b00000011,			// Digit 0
+    0b10011111,         // Digit 1
+    0b00100101,         // Digit 2
+    0b00001101,			// Digit 3
+    0b10011001,         // Digit 4
+    0b01001001,			// Digit 5
+    0b01000001,			// Digit 6
+    0b00011111,			// Digit 7
+    0b00000001,			// Digit 8
+    0b00011001			// Digit 9
 };
 
 // Active-high position 0 to 3
@@ -62,8 +62,8 @@ uint8_t segment_position[] = {
     // p3p2p1p0....
     0b00010000,     // Position 0
     0b00100000,     // Position 1
-    0b01000000,     // ...
-    0b10000000
+    0b01000000,     // Position 2
+    0b10000000		// Position 3
 };
 
 void SEG_update_shift_regs(uint8_t segments, uint8_t position)
@@ -76,7 +76,7 @@ void SEG_update_shift_regs(uint8_t segments, uint8_t position)
     // Pull LATCH, CLK, and DATA low
     GPIO_write_low(&PORTD, SEG_LATCH);
     GPIO_write_low(&PORTD, SEG_CLK);
-    GPIO_write_low(&PORTD, SEG_DATA);
+    GPIO_write_low(&PORTB, SEG_DATA);
     // Wait 1 us
     _delay_us(1);
     
@@ -91,6 +91,7 @@ void SEG_update_shift_regs(uint8_t segments, uint8_t position)
         {
             GPIO_write_high(&PORTB, SEG_DATA);
         }
+		
         else
         {
             GPIO_write_low(&PORTB, SEG_DATA);
@@ -145,7 +146,16 @@ void SEG_update_shift_regs(uint8_t segments, uint8_t position)
 /**********************************************************************
  * Function: SEG_clear()
  **********************************************************************/
+//void SEG_update_shift_regs(uint8_t segments, uint8_t position)
+
 
 /**********************************************************************
  * Function: SEG_clk_2us()
  **********************************************************************/
+void SEG_clk_2us(uint8_t segments, uint8_t position)
+{
+	GPIO_toggle(&PORTD, SEG_CLK);
+	_delay_us(1);
+	GPIO_toggle(&PORTD, SEG_CLK);
+	_delay_us(1);
+}
