@@ -124,7 +124,6 @@ ISR(TIMER2_OVF_vect)
 		{
 			secs++;
 			tenths = 0;
-			
 		}
 		
 		if (secs >= 60)
@@ -144,7 +143,6 @@ ISR(TIMER2_OVF_vect)
 		lcd_gotoxy(11, 0);
 		itoa(sqr_sec, lcd_str_sqr, 10);
 		lcd_puts(lcd_str_sqr);
-		
     }
     // Else do nothing and exit the ISR
 }
