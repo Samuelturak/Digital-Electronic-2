@@ -34,19 +34,6 @@ https://github.com/Samuelturak/Digital-Electronic-2
 
    &nbsp;
 
-4. Calculate the ADC values for these voltages according to the following equation if reference is Vref=5V and number of bits for analog to digital conversion is n=10.
-
-   ![Equation: ADC conversion](Images/eq_adc.png)
-
-   | **Push button** | **PC0[A0] voltage** | **ADC value (calculated)** | **ADC value (measured)** |
-   | :-: | :-: | :-: | :-: |
-   | Right  | 0&nbsp;V | 0   |  |
-   | Up     | 0.495&nbsp;V | 101 |  |
-   | Down   |       |     |  |
-   | Left   |       |     |  |
-   | Select |       |     |  |
-   | none   |       |     |  |
-
 
 ### Analog-to-Digital Conversion
 
