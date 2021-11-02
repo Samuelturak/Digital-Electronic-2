@@ -11,7 +11,7 @@ https://github.com/Samuelturak/Digital-Electronic-2
 1. In your words, describe what ASCII table is.
    * ASCII: ASCII contains letters, numbers and other characters. Each character has its own unique 7-bit code.
 
-2. (Hand-drawn) picture of time signals between ATmega328P and LCD keypad shield (HD44780 driver) when transmitting three character data `De2`.
+2. (Hand-drawn) picture of time signals between ATmega328P and LCD keypad shield (HD44780 driver) when transmitting three character data `DE2`.
 
    ![your figure](Images/LCD.jpg)
 
