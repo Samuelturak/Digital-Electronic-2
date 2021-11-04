@@ -4,37 +4,6 @@ Link to this file in your GitHub repository:
 
 https://github.com/Samuelturak/Digital-Electronic-2
 
-### Preperation Task
-
-   1. The push buttons are connected to PC0[A0] PIN.
-
-   2.
-
-   ![Equation: Voltage divider](Images/eq_divider1.png)
-
-   ![Equation: Voltage divider](Images/eq_divider2.png)
-
-   &nbsp;
-
-   ![Equation: Voltage divider](Images/eq_divider3.png)
-
-   &nbsp;
-
-   ![Equation: Voltage divider](Images/eq_divider4.png)
-
-   &nbsp;
-
-   ![Equation: Voltage divider](Images/eq_divider5.png)
-
-   &nbsp;
-
-3. Calculate the voltage value if none of the push buttons is pressed.
-
-   ![Equation: Voltage divider](Images/eq_divider6.png)
-
-   &nbsp;
-
-
 ### Analog-to-Digital Conversion
 
 1. Complete table with voltage divider, calculated, and measured ADC values for all five push buttons.
@@ -43,10 +12,10 @@ https://github.com/Samuelturak/Digital-Electronic-2
    | :-: | :-: | :-: | :-: |
    | Right  | 0&nbsp;V | 0   |  |
    | Up     | 0.495&nbsp;V | 101 |  |
-   | Down   | 0,969&nbsp;V    |  198   |  |
-   | Left   | 1,413&nbsp;V    |  289   |  |
-   | Select | 1,94&nbsp;V    |   397  |  |
-   | none   | 0&nbsp;V   |     |  |
+   | Down   | 1.2&nbsp;V    |  246   |  |
+   | Left   | 1.97&nbsp;V    |  403   |  |
+   | Select | 3.18&nbsp;V    |   651  |  |
+   | none   | 5&nbsp;V   |  1023   |  |
 
 
 | **Operation** | **Register(s)** | **Bit(s)** | **Description** |
