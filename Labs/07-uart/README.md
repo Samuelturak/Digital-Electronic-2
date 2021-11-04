@@ -43,10 +43,10 @@ https://github.com/Samuelturak/Digital-Electronic-2
    | :-: | :-: | :-: | :-: |
    | Right  | 0&nbsp;V | 0   |  |
    | Up     | 0.495&nbsp;V | 101 |  |
-   | Down   |       |     |  |
-   | Left   |       |     |  |
-   | Select |       |     |  |
-   | none   |       |     |  |
+   | Down   | 0,969&nbsp;V    |  198   |  |
+   | Left   | 1,413&nbsp;V    |  289   |  |
+   | Select | 1,94&nbsp;V    |   397  |  |
+   | none   | 0&nbsp;V   |     |  |
 
 2. Code listing of ACD interrupt service routine for sending data to the LCD/UART and identification of the pressed button. Always use syntax highlighting and meaningful comments:
 
