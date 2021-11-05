@@ -17,6 +17,9 @@
 #include "lcd.h"            // Peter Fleury's LCD library
 #include <stdlib.h>         // C library. Needed for conversion function
 #include "uart.h"           // Peter Fleury's UART library
+#ifndef F_CPU
+# define F_CPU 16000000  // CPU frequency in Hz required for UART_BAUD_SELECT
+#endif
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
@@ -39,16 +42,16 @@ int main(void)
     
     // Set ADC reference to AVcc
     ADMUX |= (1<<REFS0);
-    ADMUX &= (1<<REFS1);
+    ADMUX &= ~(1<<REFS1);
     // Set input channel to ADC0
-    ADMUX |= (1<<MUX0);
-    ADMUX |= (1<<MUX1);
-    ADMUX |= (1<<MUX2);
-    ADMUX |= (1<<MUX3);
+    ADMUX &= ~(1<<MUX0);
+    ADMUX &= ~(1<<MUX1);
+    ADMUX &= ~(1<<MUX2);
+    ADMUX &= ~(1<<MUX3);
     // Enable ADC module
     ADCSRA |= (1<<ADEN);
     // Enable conversion complete interrupt
-    ADCSRA |= (1<<ADSC);
+    //ADCSRA |= (1<<ADSC);
     // Set clock prescaler to 128
     ADCSRA |= (1<<ADPS0);
     ADCSRA |= (1<<ADPS1);
@@ -71,6 +74,8 @@ int main(void)
     {
         /* Empty loop. All subsequent operations are performed exclusively 
          * inside interrupt service routines ISRs */
+		uart_puts("HEllo World");
+		uart_putc('\n');
     }
 
     // Will never reach this
@@ -85,8 +90,8 @@ int main(void)
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-    
-
+	// Start ADC conversion
+	ADCSRA |= (1<<ADSC);
 }
 
 /**********************************************************************
@@ -96,19 +101,26 @@ ISR(TIMER1_OVF_vect)
 ISR(ADC_vect)
 {
   uint16_t value = 0;
-  char lcd_string[4] = "0000";
+  char lcd_string[] = "0000";
 
   lcd_gotoxy(8, 0);
+  lcd_puts("    ");
   value = ADC;                  // Copy ADC result to 16-bit variable
   itoa(value, lcd_string, 10);  // Convert decimal value to string
+  lcd_gotoxy(8, 0);
   lcd_puts(lcd_string);
   
+  lcd_gotoxy(13, 0);
+  lcd_puts("    ");
+  itoa(value, lcd_string, 16);  // Convert decimal value to string
+  lcd_gotoxy(13, 0);
+  lcd_puts(lcd_string);
   
   // WRITE YOUR CODE HERE
   uart_puts(lcd_string);
   uart_puts("r\n");
-  uart_puts('\n');
-  uart_puts('\r');
+  uart_putc('\n');
+  uart_putc('\r');
   
 }
 

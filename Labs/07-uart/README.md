@@ -10,12 +10,12 @@ https://github.com/Samuelturak/Digital-Electronic-2
 
    | **Push button** | **PC0[A0] voltage** | **ADC value (calculated)** | **ADC value (measured)** |
    | :-: | :-: | :-: | :-: |
-   | Right  | 0&nbsp;V | 0   |  |
-   | Up     | 0.495&nbsp;V | 101 |  |
-   | Down   | 1.2&nbsp;V    |  246   |  |
-   | Left   | 1.97&nbsp;V    |  403   |  |
-   | Select | 3.18&nbsp;V    |   651  |  |
-   | none   | 5&nbsp;V   |  1023   |  |
+   | Right  | 0&nbsp;V | 0   | 0 |
+   | Up     | 0.495&nbsp;V | 101 | 101 |
+   | Down   | 1.2&nbsp;V    |  246   | 245 |
+   | Left   | 1.97&nbsp;V    |  403   | 402 |
+   | Select | 3.18&nbsp;V    |   651  | 650 |
+   | none   | 5&nbsp;V   |  1023   | 1022 |
 
 
 | **Operation** | **Register(s)** | **Bit(s)** | **Description** |
@@ -37,14 +37,28 @@ https://github.com/Samuelturak/Digital-Electronic-2
  **********************************************************************/
 ISR(ADC_vect)
 {
-    uint16_t value = 0;
-    char lcd_string[4] = "0000";
+  uint16_t value = 0;
+  char lcd_string[] = "0000";
 
-    value = ADC;                  // Copy ADC result to 16-bit variable
-    itoa(value, lcd_string, 10);  // Convert decimal value to string
-
-    // WRITE YOUR CODE HERE
-
+  lcd_gotoxy(8, 0);
+  lcd_puts("    ");
+  value = ADC;                  // Copy ADC result to 16-bit variable
+  itoa(value, lcd_string, 10);  // Convert decimal value to string
+  lcd_gotoxy(8, 0);
+  lcd_puts(lcd_string);
+  
+  lcd_gotoxy(13, 0);
+  lcd_puts("    ");
+  itoa(value, lcd_string, 16);  // Convert decimal value to string
+  lcd_gotoxy(13, 0);
+  lcd_puts(lcd_string);
+  
+  // WRITE YOUR CODE HERE
+  uart_puts(lcd_string);
+  uart_puts("r\n");
+  uart_putc('\n');
+  uart_putc('\r');
+  
 }
 ```
 
@@ -53,7 +67,7 @@ ISR(ADC_vect)
 
 1. (Hand-drawn) picture of UART signal when transmitting three character data `De2` in 4800 7O2 mode (7 data bits, odd parity, 2 stop bits, 4800&nbsp;Bd).
 
-   ![your figure]()
+   ![your figure](Images/UART_signal.jpg)
 
 2. Flowchart figure for function `get_parity(uint8_t data, uint8_t type)` which calculates a parity bit of input 8-bit `data` according to parameter `type`. The image can be drawn on a computer or by hand. Use clear descriptions of the individual steps of the algorithms.
 
