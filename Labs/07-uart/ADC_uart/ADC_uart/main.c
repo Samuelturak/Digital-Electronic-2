@@ -124,3 +124,7 @@ ISR(ADC_vect)
   
 }
 
+get_parity(uint8_t data, uint8_t type)
+{
+	
+}
