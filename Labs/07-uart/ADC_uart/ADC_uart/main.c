@@ -127,4 +127,11 @@ ISR(ADC_vect)
 get_parity(uint8_t data, uint8_t type)
 {
 	
+	data = data ^ (data >> 4 | data << 4);
+	data = data ^ (data >> 2);
+	data = data ^ (data >> 1);
+	
+	return data & 1;
+	
+	
 }
