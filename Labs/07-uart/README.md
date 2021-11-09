@@ -71,7 +71,7 @@ ISR(ADC_vect)
 
 2. Flowchart figure for function `get_parity(uint8_t data, uint8_t type)` which calculates a parity bit of input 8-bit `data` according to parameter `type`. The image can be drawn on a computer or by hand. Use clear descriptions of the individual steps of the algorithms.
 
-   ![your figure](Images/Scheme.png)
+   ![your figure]()
 
 
 ### Temperature meter
@@ -79,5 +79,5 @@ ISR(ADC_vect)
 Consider an application for temperature measurement and display. Use temperature sensor [TC1046](http://ww1.microchip.com/downloads/en/DeviceDoc/21496C.pdf), LCD, one LED and a push button. After pressing the button, the temperature is measured, its value is displayed on the LCD and data is sent to the UART. When the temperature is too high, the LED will start blinking.
 
 1. Scheme of temperature meter. The image can be drawn on a computer or by hand. Always name all components and their values.
-
-   ![your figure]()
+   
+   ![your figure](Images/Scheme.png)
