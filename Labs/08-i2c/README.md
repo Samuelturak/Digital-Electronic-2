@@ -4,12 +4,12 @@
 
    | **Signal** | **MCU pin** | **Arduino pin(s)** |
    | :-: | :-: | :-: |
-   | SDA (data)  |  |  |
-   | SCL (clock) |  |  |
+   | SDA (data)  | PC4 | PC4 |
+   | SCL (clock) | PC5 | PC5 |
 
 2. What is the general structure of I2C address and data frames?
 
    | **Frame type** | **8** | **7** | **6** | **5** | **4** | **3** | **2** | **1** | **0** | **Description**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
    | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-- |
-   | Address | | | | | | | | | | |
-   | Data    | | | | | | | | | | |
+   | Address | A6 | A5 | A4 | A3 | A2 | A1 | A0 | R/W | ACK | R/W indicates if the master wants to read or write, ACK means that the slave understood |
+   | Data    | D7 | D6 | D5 | D4 | D3 | D2 | D1 | D0 | ACK |  |
