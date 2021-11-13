@@ -2,7 +2,7 @@
 
 Link to this file in your GitHub repository:
 
-https://github.com/Samuelturak/Digital-electronics-2
+https://github.com/Samuelturak/Digital-Electronic-2
 
 ### Arduino Uno pinout
 
